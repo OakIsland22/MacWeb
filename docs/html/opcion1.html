@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Opción 1 | Caja</title>
+
+  <!-- OJO: rutas relativas desde /docs/html/ -->
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/opcion1.css" />
+</head>
+
+<body>
+  <div class="page">
+    <header class="page-topbar">
+      <div class="brand">
+        <img class="logo" src="../assets/logo_sinFondo.png" alt="Logo" />
+        <div class="brand-text">
+          <p class="brand-title">Mi App</p>
+          <p class="brand-subtitle">Opción 1 · Movimientos</p>
+        </div>
+      </div>
+      
+      <div class="top-actions">
+        <a class="btn btn-ghost" href="../index.html">Inicio</a>
+      </div>
+    </header>
+    
+    <main class="wrap">
+      <section class="panel">
+        <div class="panel-head">
+          <div class="titleblock">
+            <h1 class="title">Caja: <span id="cajaNumber">1</span></h1>
+            <p class="subtitle">Usa filtros y presiona Buscar. Por ahora es UI de prueba.</p>
+          </div>
+          
+          <div class="head-meta">
+            <span class="pill">PRUEBAS</span>
+            <span class="meta mono" id="clock">--:--</span>
+          </div>
+        </div>
+        
+        <form id="filtersForm" class="filters" autocomplete="off">
+          <div class="field">
+            <label for="fechaIni">Fecha inicial</label>
+            <input id="fechaIni" name="fechaIni" type="date" />
+          </div>
+          
+          <div class="field">
+            <label for="fechaFin">Fecha final</label>
+            <input id="fechaFin" name="fechaFin" type="date" />
+          </div>
+          
+          <div class="field">
+            <label for="cajaSelect">Cambiar caja</label>
+            <select id="cajaSelect" name="caja">
+              <option value="1" selected>Caja 1</option>
+              <option value="2">Caja 2</option>
+              <option value="3">Caja 3</option>
+            </select>
+          </div>
+          
+          <div class="field">
+            <label for="eco">Número económico</label>
+            <input id="eco" name="eco" type="text" inputmode="numeric" placeholder="Ej. 12045" />
+          </div>
+          
+          <div class="field">
+            <label for="nomina">Número de nómina</label>
+            <input id="nomina" name="nomina" type="text" inputmode="numeric" placeholder="Ej. 983210" />
+          </div>
+          
+          <div class="actions">
+            <button class="btn" id="btnBuscar" type="button">Buscar</button>
+            <button class="btn btn-ghost" id="btnLimpiar" type="button">Limpiar</button>
+          </div>
+        </form>
+        
+        <section class="table-zone" aria-label="Resultados">
+          <div class="table-head">
+            <h2 class="table-title">Resultados</h2>
+            <p class="table-hint">Tip: doble clic en un renglón para ver el evento en consola.</p>
+          </div>
+          
+          <div class="table-shell" role="region" aria-label="Tabla" tabindex="0">
+            <table class="data-table" id="resultsTable">
+              <thead>
+                <tr>
+                  <th>Folio</th>
+                  <th>Fecha</th>
+                  <th>Eco</th>
+                  <th>Nombre económico</th>
+                  <th>Cuenta</th>
+                  <th class="right">Importe</th>
+                  <th>Nómina</th>
+                  <th>Operador</th>
+                </tr>
+              </thead>
+              <tbody id="resultsBody">
+                <!-- Se llena con JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+</body>
+<script defer src="../js/opcion1.js"></script>
+</html>
