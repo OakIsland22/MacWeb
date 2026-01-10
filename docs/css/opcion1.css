@@ -132,11 +132,6 @@
   font-size: 16px;
   letter-spacing: .15px;
 }
-.table-hint{
-  margin: 0;
-  color: rgba(255,255,255,.55);
-  font-size: 12px;
-}
 
 .table-shell{
   width: 100%;
@@ -151,7 +146,7 @@
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  table-layout: fixed; /* importante para textos largos */
+  table-layout: fixed;
 }
 
 .data-table thead th{
@@ -174,20 +169,13 @@
   vertical-align: top;
   font-size: 13px;
   color: rgba(255,255,255,.88);
-
-  /* para textos largos */
   white-space: normal;
   overflow-wrap: anywhere;
   word-break: break-word;
 }
 
-.data-table tbody tr{
-  cursor: default;
-}
-
-.data-table tbody tr:hover{
-  background: rgba(255,255,255,.05);
-}
+.data-table tbody tr{ cursor: default; }
+.data-table tbody tr:hover{ background: rgba(255,255,255,.05); }
 
 .right{ text-align: right; }
 
@@ -202,12 +190,9 @@
   .table-shell{ height: 62vh; }
 }
 
-/* Forzar controles nativos en tema oscuro (ayuda a selects y date inputs) */
-:root{
-  color-scheme: dark;
-}
+/* Forzar controles nativos en tema oscuro */
+:root{ color-scheme: dark; }
 
-/* SELECT y OPTIONS en modo oscuro */
 .field select{
   appearance: none;
   -webkit-appearance: none;
@@ -217,18 +202,13 @@
   color: rgba(255,255,255,.92);
 }
 
-/* Opciones del desplegable (lo que no se veía) */
+/* Opciones del select */
 .field select option{
-  background-color: #0b1020;   /* tu fondo */
+  background-color: #0b1020;
   color: rgba(255,255,255,.92);
 }
 
-/* Quita el "blanco raro" en algunos navegadores */
-.field select:focus{
-  outline: none;
-}
-
-/* Flechita custom (opcional, mejora look) */
+/* Flechita custom */
 .field select{
   background-image:
     linear-gradient(45deg, transparent 50%, rgba(255,255,255,.75) 50%),
@@ -243,16 +223,14 @@
     6px 6px,
     100% 100%;
   background-repeat: no-repeat;
-  padding-right: 36px; /* espacio para la flecha */
+  padding-right: 36px;
 }
 
-/* INPUT DATE: mejor integración visual */
 .field input[type="date"]{
   color-scheme: dark;
   accent-color: rgba(124,58,237,.95);
 }
 
-/* Icono del calendario en Chrome/Edge/Safari */
 .field input[type="date"]::-webkit-calendar-picker-indicator{
   filter: invert(1) opacity(.8);
   cursor: pointer;
@@ -266,7 +244,6 @@
   width: 200px;
   height: 100px;
   border-radius: 18px;
-
   background: rgba(255,255,255,.12);
   border: 1px solid rgba(255,255,255,.22);
   box-shadow:
@@ -274,8 +251,234 @@
     0 0 0 8px rgba(124,58,237,.12);
 }
 
-/* Que el bloque de marca se alinee mejor con logo grande */
-.page-topbar .brand{
-  gap: 14px;
+.page-topbar .brand{ gap: 14px; }
+
+/* --- Filtro global --- */
+.table-head{ align-items: flex-start; }
+
+.table-head-left{
+  display:flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
+.table-head-right{
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.table-filter{
+  display:flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.table-filter input{
+  width: min(520px, 72vw);
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.90);
+  outline: none;
+}
+
+.table-filter input:focus{
+  border-color: rgba(124,58,237,.55);
+  box-shadow: 0 0 0 3px rgba(124,58,237,.18);
+}
+
+/* --- Footer de tabla (sticky abajo) --- */
+.table-footer{
+  position: sticky;
+  bottom: 0;
+  margin-top: 10px;
+  padding: 10px 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(11,16,32,.72);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-left{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-size{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+}
+
+#pageSize{
+  width: 84px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.90);
+  outline: none;
+}
+
+#pageSize:focus{
+  border-color: rgba(124,58,237,.55);
+  box-shadow: 0 0 0 3px rgba(124,58,237,.18);
+}
+
+.btn-mini{
+  padding: 8px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.footer-center{
+  display:flex;
+  gap: 10px;
+  align-items: center;
+}
+
+@media (max-width: 680px){
+  .table-head-right{ align-items: stretch; }
+  .table-filter{ flex-direction: column; align-items: stretch; }
+  .table-filter input{ width: 100%; }
+
+  .table-footer{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .footer-center{ justify-content: space-between; }
+}
+
+/* Accesibilidad */
+.sr-only{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* Chips (filtros activos) */
+#activeChips{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.chip{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.82);
+  font-size: 12px;
+  line-height: 1;
+  max-width: 100%;
+}
+
+.chip span{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 58vw;
+}
+
+.chip-fixed{
+  border-color: rgba(124,58,237,.22);
+  background: rgba(124,58,237,.10);
+  color: rgba(255,255,255,.88);
+}
+
+/* Botón X más bonito */
+.chip-x{
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.75);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  font-size: 16px; /* tamaño del × */
+  transition: transform .08s ease, background .12s ease, border-color .12s ease, color .12s ease;
+}
+
+.chip-x:hover{
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.22);
+  color: rgba(255,255,255,.95);
+}
+
+.chip-x:active{
+  transform: scale(.95);
+}
+
+.chip-x:focus{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(124,58,237,.18);
+}
+
+/* Flechita de orden en headers */
+th.sortable{
+  cursor: pointer;
+  user-select: none;
+}
+
+th.sortable .sort-ind{
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 8px;
+  vertical-align: middle;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 6px solid rgba(255,255,255,.55); /* triángulo */
+  opacity: .45;
+  transform: rotate(-90deg); /* estado “neutral” */
+  transition: transform .12s ease, opacity .12s ease, border-top-color .12s ease;
+}
+
+/* cuando NO está seleccionado, se queda tenue */
+th.sortable:not(.sorted-asc):not(.sorted-desc) .sort-ind{
+  opacity: .25;
+  transform: rotate(-90deg);
+}
+
+/* seleccionado asc: triángulo hacia arriba */
+th.sortable.sorted-asc .sort-ind{
+  opacity: .95;
+  transform: rotate(180deg);
+  border-top-color: rgba(255,255,255,.92);
+}
+
+/* seleccionado desc: triángulo hacia abajo */
+th.sortable.sorted-desc .sort-ind{
+  opacity: .95;
+  transform: rotate(0deg);
+  border-top-color: rgba(255,255,255,.92);
+}

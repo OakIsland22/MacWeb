@@ -21,37 +21,37 @@
           <p class="brand-subtitle">Opción 1 · Movimientos</p>
         </div>
       </div>
-      
+
       <div class="top-actions">
         <a class="btn btn-ghost" href="../index.html">Inicio</a>
       </div>
     </header>
-    
+
     <main class="wrap">
       <section class="panel">
         <div class="panel-head">
           <div class="titleblock">
             <h1 class="title">Caja: <span id="cajaNumber">1</span></h1>
-            <p class="subtitle">Usa filtros y presiona Buscar. Por ahora es UI de prueba.</p>
+            <p class="subtitle">Usa filtros (se aplican al instante).</p>
           </div>
-          
+
           <div class="head-meta">
             <span class="pill">PRUEBAS</span>
             <span class="meta mono" id="clock">--:--</span>
           </div>
         </div>
-        
+
         <form id="filtersForm" class="filters" autocomplete="off">
           <div class="field">
             <label for="fechaIni">Fecha inicial</label>
             <input id="fechaIni" name="fechaIni" type="date" />
           </div>
-          
+
           <div class="field">
             <label for="fechaFin">Fecha final</label>
             <input id="fechaFin" name="fechaFin" type="date" />
           </div>
-          
+
           <div class="field">
             <label for="cajaSelect">Cambiar caja</label>
             <select id="cajaSelect" name="caja">
@@ -60,52 +60,85 @@
               <option value="3">Caja 3</option>
             </select>
           </div>
-          
+
           <div class="field">
             <label for="eco">Número económico</label>
             <input id="eco" name="eco" type="text" inputmode="numeric" placeholder="Ej. 12045" />
           </div>
-          
+
           <div class="field">
             <label for="nomina">Número de nómina</label>
             <input id="nomina" name="nomina" type="text" inputmode="numeric" placeholder="Ej. 983210" />
           </div>
-          
+
           <div class="actions">
             <button class="btn" id="btnBuscar" type="button">Buscar</button>
             <button class="btn btn-ghost" id="btnLimpiar" type="button">Limpiar</button>
           </div>
         </form>
-        
+
         <section class="table-zone" aria-label="Resultados">
           <div class="table-head">
-            <h2 class="table-title">Resultados</h2>
-            <p class="table-hint">Tip: doble clic en un renglón para ver el evento en consola.</p>
+            <div class="table-head-left">
+              <h2 class="table-title">Resultados</h2>
+              <div class="chips" id="activeChips"></div>
+              <div class="notice" id="notice" style="display:none;"></div>
+            </div>
+
+            <div class="table-head-right">
+              <div class="table-filter">
+                <label class="sr-only" for="tableFilter">Filtrar</label>
+                <input id="tableFilter" type="text" placeholder="Filtrar en la tabla (folio, eco, cuenta, operador...)" />
+                <button class="btn btn-ghost" id="btnClearTableFilter" type="button" title="Limpiar filtro">Limpiar</button>
+              </div>
+
+              <div class="results-meta">
+                <span class="meta mono" id="resultsCount">Encontrados: 0</span>
+              </div>
+            </div>
           </div>
-          
+
           <div class="table-shell" role="region" aria-label="Tabla" tabindex="0">
             <table class="data-table" id="resultsTable">
               <thead>
                 <tr>
-                  <th>Folio</th>
-                  <th>Fecha</th>
-                  <th>Eco</th>
-                  <th>Nombre económico</th>
-                  <th>Cuenta</th>
-                  <th class="right">Importe</th>
-                  <th>Nómina</th>
-                  <th>Operador</th>
+                  <th data-key="folio" class="sortable">Folio <span class="sort-ind" aria-hidden="true"></span></th>
+                  <th data-key="fecha" class="sortable">Fecha <span class="sort-ind" aria-hidden="true"></span></th>
+                  <th data-key="eco" class="sortable">Eco <span class="sort-ind" aria-hidden="true"></span></th>
+                  <th data-key="nombreEco" class="sortable">Nombre Eco <span class="sort-ind" aria-hidden="true"></span></th>
+                  <th data-key="cuenta" class="sortable">Cuenta <span class="sort-ind" aria-hidden="true"></span></th>
+                  <th data-key="importe" class="sortable right">Importe <span class="sort-ind" aria-hidden="true"></span></th>
+                  <th data-key="nomina" class="sortable">Nómina <span class="sort-ind" aria-hidden="true"></span></th>
+                  <th data-key="operador" class="sortable">Operador <span class="sort-ind" aria-hidden="true"></span></th>
                 </tr>
               </thead>
-              <tbody id="resultsBody">
-                <!-- Se llena con JS -->
-              </tbody>
+              <tbody id="resultsBody"></tbody>
             </table>
+          </div>
+
+          <div class="table-footer" id="tableFooter">
+            <div class="footer-left">
+              <span class="meta">Filas:</span>
+
+              <div class="page-size">
+                <input id="pageSize" type="text" inputmode="numeric" placeholder="10" />
+                <button class="btn btn-ghost btn-mini" id="btnApplyPageSize" type="button" title="Aplicar">OK</button>
+              </div>
+
+              <span class="meta mono" id="pageSizeHint">10–100</span>
+            </div>
+
+            <div class="footer-center">
+              <button class="btn btn-ghost" id="btnPrev" type="button">Anterior</button>
+              <span class="meta mono" id="pageInfo">1 / 1</span>
+              <button class="btn btn-ghost" id="btnNext" type="button">Siguiente</button>
+            </div>
           </div>
         </section>
       </section>
     </main>
   </div>
+
+  <script defer src="../js/opcion1.js"></script>
 </body>
-<script defer src="../js/opcion1.js"></script>
 </html>
